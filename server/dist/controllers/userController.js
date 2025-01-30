@@ -23,7 +23,7 @@ const signUpController = (request, response) => __awaiter(void 0, void 0, void 0
         const validation = userSchema_1.signupSchema.safeParse(body);
         if (!validation.success) {
             const errorMsg = validation.error.errors[0].message;
-            response.status(400).json({ message: errorMsg });
+            response.status(400).json({ error: errorMsg });
             return;
         }
         // Check if user already exists
@@ -62,7 +62,7 @@ const loginController = (request, response) => __awaiter(void 0, void 0, void 0,
         const validation = userSchema_1.loginSchema.safeParse(body);
         if (!validation.success) {
             const errorMsg = validation.error.errors[0].message;
-            response.status(400).json({ message: errorMsg });
+            response.status(400).json({ error: errorMsg });
             return;
         }
         const user = yield db_1.default.user.findUnique({
