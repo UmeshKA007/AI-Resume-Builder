@@ -13,7 +13,7 @@ export const signUpController = async (request: Request, response: Response):Pro
 
     if (!validation.success) {
       const errorMsg = validation.error.errors[0].message; 
-      response.status(400).json({ message: errorMsg });
+      response.status(400).json({ error: errorMsg });
       return;
     }
 
@@ -60,7 +60,7 @@ export const loginController =async(request:Request,response:Response):Promise<v
         const validation = loginSchema.safeParse(body)
         if(!validation.success){
             const errorMsg = validation.error.errors[0].message
-            response.status(400).json({message:errorMsg})
+            response.status(400).json({error:errorMsg})
             return;
         }
         const user = await prisma.user.findUnique({
